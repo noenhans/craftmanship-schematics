@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { <%= classify(name) %>Item } from './<%= dasherize(name) %>-item';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <%= classify(name) %>Service {
+  private _items: <%= classify(name) %>Item[];
+  private _activeItem: <%= classify(name) %>Item;
+
+  constructor() {
+    this._items = [
+      { name: 'Frog', iconClass: 'fas fa-frog', routerLink: '/' },
+      { name: 'Cat', iconClass: 'fas fa-cat', routerLink: '/' },
+      { name: 'Dog', iconClass: 'fas fa-dog', routerLink: '/' }
+    ];
+
+    this._activeItem = this._items[0];
+  }
+
+  get items() {
+    return this._items;
+  }
+
+  get activeItem() {
+    return this._activeItem;
+  }
+
+  set activeItem(newActiveItem: <%= classify(name) %>Item) {
+    this._activeItem = newActiveItem;
+  }
+}

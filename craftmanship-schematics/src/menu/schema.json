@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "CraftmanshipSchemanticsMenu",
+    "title": "Craftmanship Menu Schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Specifies the name of the generated Menu.",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            }
+        },
+        "path": {
+            "type": "string",
+            "format": "path",
+            "description": "The path to create the component.",
+            "visible": false
+        },
+        "project": {
+            "type": "string",
+            "description": "The name of the project.",
+            "$default": {
+                "$source": "projectName"
+            }
+        },
+        "menuService": {
+            "type": "boolean",
+            "default": true,
+            "description": "Flag to indicate whether an menu service should be generated.",
+            "alias": ["ms"]
+        },
+        "selector": {
+            "type": "string",
+            "format": "html-selector",
+            "description": "The HTML selector to use for this menu-component."
+        },
+        "module":  {
+            "type": "string",
+            "description": "The declaring module."
+        }
+    },
+    "required": ["name"]
+}

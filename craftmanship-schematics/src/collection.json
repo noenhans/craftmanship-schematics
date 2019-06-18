@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "component-extended": {
+      "aliases": ["ce"],
+      "description": "A blank schematic.",
+      "factory": "./component-extended/index#componentExtended",
+      "schema": "../node_modules/@schematics/angular/component/schema.json"
+    },
+    "menu": {
+      "aliases": ["mnu"],
+      "description": "A blank schematic.",
+      "factory": "./menu/index#menu",
+      "schema": "./menu/schema.json"
+    }
+  }
+}

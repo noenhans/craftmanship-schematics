@@ -1,0 +1,44 @@
+<% if (menuService) { %>import { <%= classify(name) %>Service } from './<%= dasherize(name) %>.service';<% } %>
+import { Component, OnInit } from '@angular/core';
+import { <%= classify(name) %>Item } from './<%= dasherize(name) %>-item';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
+@Component({
+  selector: 'app-<%= dasherize(name) %>',
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.component.css']
+})
+export class <%= classify(name) %>Component implements OnInit {
+  items: <%= classify(name) %>Item[];
+  activeItem: <%= classify(name) %>Item;
+  searchForm: FormGroup;
+
+  constructor(<% if (menuService) { %>private readonly <%= camelize(name) %>Service: <%= classify(name) %>Service, <% } %>private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    <% if (menuService) { %>this.items = this.<%= camelize(name) %>Service.items;
+    this.activeItem = this.<%= camelize(name) %>Service.activeItem;<% } else { %>
+    this.items = [
+      { name: 'Frog', iconClass: 'fas fa-frog', routerLink: '/' },
+      { name: 'Cat', iconClass: 'fas fa-cat', routerLink: '/' },
+      { name: 'Dog', iconClass: 'fas fa-dog', routerLink: '/' }
+    ];
+    this.activeItem = this.items[0];
+<% } %>
+    this.searchForm = this.formBuilder.group({
+      search: ['', []]
+    });
+  }
+
+  onSearchSubmit() {
+    const searchParam = this.searchForm.controls.search.value;
+    console.log(searchParam);
+  }
+
+  changeTab(item: <%= classify(name) %>Item) {
+    <% if (menuService) { %>this.<%= camelize(name) %>Service.activeItem = item;
+    this.activeItem = this.<%= camelize(name) %>Service.activeItem;<% } else { %>
+    this.activeItem = item;<% } %>
+  }
+
+}

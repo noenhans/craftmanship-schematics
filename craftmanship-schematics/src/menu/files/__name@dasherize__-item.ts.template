@@ -1,0 +1,5 @@
+export interface <%= classify(name) %>Item {
+  name: string;
+  iconClass?: string;
+  routerLink?: string;
+}
